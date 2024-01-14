@@ -1,28 +1,31 @@
+import 'package:expense_tracker/Screens/add_screen/components/main_container_components/amount_box_widget.dart';
+import 'package:expense_tracker/Screens/add_screen/components/main_container_components/date_time_box_widget.dart';
+import 'package:expense_tracker/Screens/add_screen/components/main_container_components/description_box_widget.dart';
+import 'package:expense_tracker/Screens/add_screen/components/main_container_components/exp_type_box_widget.dart';
 import 'package:expense_tracker/Screens/add_screen/components/main_container_components/name_box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainContainerWidget extends ConsumerWidget {
-  MainContainerWidget({super.key});
-  
-  
-  String? selctedItemi;
-  final TextEditingController descriptionController = TextEditingController();
-  FocusNode ex = FocusNode();
-  final TextEditingController amountController = TextEditingController();
-  FocusNode amount_ = FocusNode();
-  final List<String> _expenseCategory = [
-    'food',
-    "Transfer",
-    "Transportation",
-    "Education"
-  ];
+ const MainContainerWidget({super.key});
 
-  final List<String> _expenseType = [
-    'Income',
-    "Expenses",
-  ];
-  
+  // String? selctedItemi;
+  //final TextEditingController descriptionController = TextEditingController();
+ // FocusNode ex = FocusNode();
+ // final TextEditingController amountController = TextEditingController();
+ // FocusNode amount_ = FocusNode();
+  // final List<String> _expenseCategory = [
+  //   'food',
+  //   "Transfer",
+  //   "Transportation",
+  //   "Education"
+  // ];
+
+  // final List<String> _expenseType = [
+  //   'Income',
+  //   "Expenses",
+  // ];
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
@@ -32,26 +35,23 @@ class MainContainerWidget extends ConsumerWidget {
       ),
       height: 550,
       width: 340,
-      child: Column(
+      child: const Column(
         children: [
-          const SizedBox(height: 50),
-        //  NameBoxWidget(),
-          const SizedBox(height: 30),
-          // explain(),
-          // const SizedBox(height: 30),
-          // amount(),
-          // const SizedBox(height: 30),
-          // How(),
-          // const SizedBox(height: 30),
-          // date_time(),
-          // const Spacer(),
+          SizedBox(height: 50),
+          NameBoxWidget(),
+          SizedBox(height: 30),
+           DescriptionBoxWidget(),
+           SizedBox(height: 30),
+          AmountBoxWidget(),
+           SizedBox(height: 30),
+         ExpenseTypeBoxWidget(),
+          SizedBox(height: 30),
+         DateTimeBoxWidget(),
+          Spacer(),
           // save(),
-          // const SizedBox(height: 25),
+          SizedBox(height: 25),
         ],
       ),
     );
   }
-
-
-  
 }

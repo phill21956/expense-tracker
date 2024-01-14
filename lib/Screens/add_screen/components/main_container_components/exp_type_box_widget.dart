@@ -2,13 +2,13 @@ import 'package:expense_tracker/controllers/add_controller.dart/main_container_c
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NameBoxWidget extends ConsumerWidget {
-  const NameBoxWidget({super.key});
+class ExpenseTypeBoxWidget extends ConsumerWidget {
+  const ExpenseTypeBoxWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedItem = ref.watch(selectedCatProvider);
-    final items = ref.watch(expenseCatProvider);
+    final selectedItem = ref.watch(selectedTypeProvider);
+    final items = ref.watch(expenseTypeProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -24,11 +24,7 @@ class NameBoxWidget extends ConsumerWidget {
         child: DropdownButton<String>(
           value: selectedItem,
           onChanged: ((value) {
-            ref.read(selectedCatProvider.notifier).state = value!;
-            // if (value == 'Others') {
-            //   Navigator.of(context).push(
-            //       MaterialPageRoute(builder: (context) => Add_Screen()));
-            // }
+            ref.read(selectedTypeProvider.notifier).state = value!;
           }),
           items: items
               .map((e) => DropdownMenuItem(
@@ -37,11 +33,6 @@ class NameBoxWidget extends ConsumerWidget {
                       alignment: Alignment.center,
                       child: Row(
                         children: [
-                          SizedBox(
-                            width: 40,
-                            child: Image.asset('images/$e.png'),
-                          ),
-                          const SizedBox(width: 10),
                           Text(
                             e,
                             style: const TextStyle(fontSize: 18),
@@ -53,20 +44,13 @@ class NameBoxWidget extends ConsumerWidget {
               .toList(),
           selectedItemBuilder: (BuildContext context) => items
               .map((e) => Row(
-                    children: [
-                      SizedBox(
-                        width: 42,
-                        child: Image.asset('images/$e.png'),
-                      ),
-                      const SizedBox(width: 5),
-                      Text(e)
-                    ],
+                    children: [Text(e)],
                   ))
               .toList(),
           hint: const Padding(
             padding: EdgeInsets.only(top: 12),
             child: Text(
-              'select category',
+              'type',
               style: TextStyle(color: Colors.grey),
             ),
           ),

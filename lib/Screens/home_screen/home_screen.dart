@@ -25,7 +25,7 @@ class HomeScreen extends ConsumerWidget {
             (context, index) {
               Add_data history = //.getAt(index);
                   addDataBox.values.toList()[index];
-              return history == null
+              return addDataBox.isEmpty
                   ? const Center(child: Text('Empty'))
                   : Dismissible(
                       key: UniqueKey(),
