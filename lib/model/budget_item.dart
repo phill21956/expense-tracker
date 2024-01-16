@@ -45,34 +45,3 @@ List<BudgetItem> budgetJson = [
     color: Colors.amber,
   ),
 ];
-
-// List<BudgetItem> budget() {
-//   Map<String, double> aggregatedPrices = {};
-//   List<BudgetItem> aggregatedList = [];
-
-//   budgetJson.forEach((item) {
-//     if (aggregatedPrices.containsKey(item.name)) {
-//       aggregatedPrices[item.name] =
-//           (aggregatedPrices[item.name] ?? 0) + item.price;
-//     } else {
-//       aggregatedPrices[item.name] = item.price;
-//     }
-//   });
-
-//   aggregatedList = aggregatedPrices.entries.map((entry) {
-//     String itemName = entry.key;
-//     double totalPrice = entry.value;
-//     // Find the corresponding item in budgetJson
-//     BudgetItem originalItem =
-//         budgetJson.firstWhere((item) => item.name == itemName);
-//     return BudgetItem(
-//       name: itemName,
-//       price: totalPrice,
-//       percentage: originalItem.percentage,
-//       color: originalItem.color,
-//     );
-//   }).toList();
-//   return aggregatedList;
-// }
-
-

@@ -14,4 +14,4 @@ String formatAmount(double amount) {
   ).format(amount);
 }
 
-Color primaryColor = primaryColor;
+Color primaryColor =const Color(0xff368983);

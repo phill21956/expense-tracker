@@ -1,6 +1,6 @@
 import 'package:expense_tracker/Screens/add_screen/add_screen.dart';
 import 'package:expense_tracker/Screens/bottom_nav_bar.dart/components/bottom_nav_row_widget.dart';
-import 'package:expense_tracker/Screens/budget_page/budget_screen.dart';
+import 'package:expense_tracker/Screens/budget_screen/budget_screen.dart';
 import 'package:expense_tracker/Screens/home_screen/home_screen.dart';
 import 'package:expense_tracker/Screens/statistic_screen/statistic_screen.dart';
 import 'package:expense_tracker/controllers/bottom_bar_controller/bottom_bar_controller.dart';
@@ -15,9 +15,9 @@ class BottomNavBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final indexColor = ref.watch(bottomBarIndexProvider);
     List screen = [
-     const HomeScreen(),
-      const StatsScreen(),
-      const BudgetScreen(),
+      const HomeScreen(),
+      StatsScreen(),
+      BudgetScreen(),
       Container()
     ];
     return Scaffold(

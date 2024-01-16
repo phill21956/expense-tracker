@@ -1,3 +1,4 @@
+import 'package:expense_tracker/Screens/statistic_screen/statistic_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,12 +7,12 @@ class TransactionHistoryWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             'Transactions History',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -19,12 +20,16 @@ class TransactionHistoryWidget extends ConsumerWidget {
               color: Colors.black,
             ),
           ),
-          Text(
-            'See all',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-              color: Colors.grey,
+          InkWell(
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => StatsScreen())),
+            child: const Text(
+              'See all',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+                color: Colors.grey,
+              ),
             ),
           ),
         ],

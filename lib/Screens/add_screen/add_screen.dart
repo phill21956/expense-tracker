@@ -10,11 +10,11 @@ class AddScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      body:  SafeArea(
+      body: const SafeArea(
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-           const BackgroundContainerWidget(),
+            BackgroundContainerWidget(),
             Positioned(top: 120, child: MainContainerWidget()),
           ],
         ),
