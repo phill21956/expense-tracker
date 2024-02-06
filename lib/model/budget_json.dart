@@ -1,36 +1,11 @@
 import 'package:flutter/material.dart';
 
 const List budget_json = [
-  {
-    "name": "food",
-    "price": "\$2250.00",
-    "label_percentage": "45%",
-    "percentage": 0.45,
-    "color": Colors.green
-  },
-  {
-    "name": "Education",
-    "price": "\$3000.00",
-    "label_percentage": "70%",
-    "percentage": 0.7,
-    "color": Colors.red
-  },
-  {
-    "name": "Transportation",
-    "price": "\$4000.00",
-    "label_percentage": "90%",
-    "percentage": 0.9,
-    "color": Colors.blue
-  },
-    {
-    "name": "food",
-    "price": "\$3000.00",
-    "label_percentage": "70%",
-    "percentage": 0.7,
-    "color": Colors.red
-  },
+  {"label_percentage": "45%", "percentage": 0.45, "color": Colors.green},
+  {"label_percentage": "70%", "percentage": 0.7, "color": Colors.red},
+  {"label_percentage": "90%", "percentage": 0.9, "color": Colors.blue},
+  {"label_percentage": "70%", "percentage": 0.7, "color": Colors.red},
 ];
-
 
 List days = [
   {"label": "Sun", "day": "28"},

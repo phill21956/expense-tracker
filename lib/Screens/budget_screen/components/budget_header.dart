@@ -1,3 +1,5 @@
+import 'package:expense_tracker/Screens/add_budget/add_budget.dart';
+import 'package:expense_tracker/Screens/add_screen/add_screen.dart';
 import 'package:expense_tracker/controllers/budget_controller/budget_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,13 +23,13 @@ class BudgetHeaderWidget extends ConsumerWidget {
       ]),
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 60, right: 20, left: 20, bottom: 25),
+            const EdgeInsets.only(top: 30, right: 20, left: 20, bottom: 25),
         child: Column(
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Budget",
                   style: TextStyle(
                       fontSize: 20,
@@ -36,9 +38,14 @@ class BudgetHeaderWidget extends ConsumerWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.add, size: 25),
-                    SizedBox(width: 20),
-                    Icon(Icons.search)
+                    IconButton(
+                        icon: const Icon(Icons.add, size: 25),
+                        onPressed: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AddBudgetScreen(),
+                            ))),
+                    const SizedBox(width: 20),
+                    const Icon(Icons.search)
                   ],
                 )
               ],

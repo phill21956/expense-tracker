@@ -13,14 +13,23 @@ class StatsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(statsValueNotifierProvider);
+    final indexColor = ref.watch(statsIndexProvider);
+    final day = ref.watch(statsDayProvider);
     return Scaffold(
       body: SafeArea(
         child: ValueListenableBuilder(
           valueListenable: stats,
           builder: (BuildContext context, dynamic value, Widget? child) {
             data = f[value];
-            return CustomScrollView(
-              slivers: [const StatsHeaderWidget(), StatsBodyWidget(a: data)],
+            return Column(
+            children: [
+                const StatsHeaderWidget(),
+                data.isNotEmpty
+                    ? StatsBodyWidget(a: data)
+                    : Center(
+                        child: Text(
+                            'No transaction avalable for ${day[indexColor]}')),
+              ],
             );
           },
         ),

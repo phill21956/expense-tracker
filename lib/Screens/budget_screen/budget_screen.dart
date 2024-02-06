@@ -12,6 +12,8 @@ class BudgetScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final budget = ref.watch(budgetNotifierProvider);
+    final statsIndex = ref.watch(budgetIndexProvider);
+    final statsDay = ref.watch(budgetDayProvider);
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(0.05),
       body: SafeArea(
@@ -23,7 +25,12 @@ class BudgetScreen extends ConsumerWidget {
                 children: [
                   const BudgetHeaderWidget(),
                   const SizedBox(height: 20),
-                  BudgetBodyWidget(aggList: budgetData)
+                  Expanded(
+                      child: budgetData.isNotEmpty
+                          ? BudgetBodyWidget(aggList: budgetData)
+                          : Center(
+                              child: Text(
+                                  'No transaction avalable for ${statsDay[statsIndex]}')))
                 ],
               );
             }),

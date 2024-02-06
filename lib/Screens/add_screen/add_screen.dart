@@ -14,7 +14,7 @@ class AddScreen extends ConsumerWidget {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            BackgroundContainerWidget(),
+            BackgroundContainerWidget(title: 'Add'),
             Positioned(top: 120, child: MainContainerWidget()),
           ],
         ),

@@ -16,8 +16,7 @@ class TransactionListWidget extends ConsumerWidget {
         child: Image.asset('images/${history.name}.png', height: 40),
       ),
       title: Text(
-        history.explain,
-        // '',
+        history.explain.capitalize(),
         style: const TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.w600,
@@ -28,7 +27,6 @@ class TransactionListWidget extends ConsumerWidget {
         children: [
           Text(
             history.name,
-            // '',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Color(0xff368983),
@@ -36,7 +34,7 @@ class TransactionListWidget extends ConsumerWidget {
           ),
           Text(
             ' - ${history.datetime.day}/${history.datetime.month}/${history.datetime.year % 100}',
-            //'',
+         
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               color: Color(0xff368983),
@@ -46,7 +44,7 @@ class TransactionListWidget extends ConsumerWidget {
       ),
       trailing: Text(
         formatAmount(double.parse(history.amount)),
-        //'',
+    
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 19,

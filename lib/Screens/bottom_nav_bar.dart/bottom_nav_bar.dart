@@ -26,7 +26,7 @@ class BottomNavBar extends ConsumerWidget {
         onPressed: () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => const AddScreen())),
         backgroundColor: primaryColor,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(

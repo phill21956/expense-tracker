@@ -10,9 +10,27 @@ final selectedCatProvider = StateProvider.autoDispose<String?>((ref) {
   return null;
 });
 
-final expenseCatProvider = StateProvider<List<String>>((ref) {
-  return ['food', "Transfer", "Transportation", "Education"];
+final expenseCatProvider = StateProvider.autoDispose<List<String>>((ref) {
+  return [
+    "Income",
+    'Food',
+    'Clothing',
+    'Entertainment',
+    'Gift',
+    'Giving',
+    'Health',
+    'Housing',
+    'Savings',
+    'Tithe',
+    'Utilities',
+    "Transportation",
+    "Education",
+    "Others"
+  ];
 });
+// final expenseCatProvider = StateProvider.autoDispose<List<String>>((ref) {
+//   return ["Transfer", "Add new category"];
+// });
 
 //CONTROLLER FOR DESCRIPTION BOX
 final descriptionNodeProvider = StateProvider.autoDispose<FocusNode>((ref) {

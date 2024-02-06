@@ -1,3 +1,4 @@
+import 'package:expense_tracker/Screens/add_budget/add_budget.dart';
 import 'package:expense_tracker/controllers/add_controller.dart/main_container_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,10 +26,10 @@ class NameBoxWidget extends ConsumerWidget {
           value: selectedItem,
           onChanged: ((value) {
             ref.read(selectedCatProvider.notifier).state = value!;
-            // if (value == 'Others') {
-            //   Navigator.of(context).push(
-            //       MaterialPageRoute(builder: (context) => Add_Screen()));
-            // }
+            if (value == "Add new category") {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const AddBudgetScreen()));
+            }
           }),
           items: items
               .map((e) => DropdownMenuItem(
@@ -38,9 +39,7 @@ class NameBoxWidget extends ConsumerWidget {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: 40,
-                            child: Image.asset('images/$e.png'),
-                          ),
+                              width: 40, child: Image.asset('images/$e.png')),
                           const SizedBox(width: 10),
                           Text(
                             e,

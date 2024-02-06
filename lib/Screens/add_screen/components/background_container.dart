@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BackgroundContainerWidget extends StatelessWidget {
-  const BackgroundContainerWidget({super.key});
-
+  const BackgroundContainerWidget({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,9 +32,9 @@ class BackgroundContainerWidget extends StatelessWidget {
                       },
                       child: const Icon(Icons.arrow_back, color: Colors.white),
                     ),
-                    const Text(
-                      'Adding',
-                      style: TextStyle(
+                     Text(
+                    title,
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: Colors.white),

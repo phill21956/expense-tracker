@@ -1,17 +1,20 @@
 import 'package:expense_tracker/data/utils.dart';
 import 'package:expense_tracker/model/add_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StatsBodyWidget extends StatelessWidget {
+class StatsBodyWidget extends ConsumerWidget {
   const StatsBodyWidget({
-    super.key, required this.a,
+    super.key,
+    required this.a,
   });
-final  List<Add_data> a;
+  final List<Add_data> a;
   @override
-  Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(
-      (context, index) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: a.length,
+      itemBuilder: (context, index) {
         return ListTile(
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(5),
@@ -40,7 +43,6 @@ final  List<Add_data> a;
           ),
         );
       },
-      childCount: a.length,
-    ));
+    );
   }
 }

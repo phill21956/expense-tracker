@@ -28,19 +28,17 @@ class HomeScreen extends ConsumerWidget {
                     childCount: addDataBox.length,
                     (context, index) {
                       var history = addDataBox.values.toList()[index];
-                      return addDataBox.isEmpty
-                          ? const Center(
-                              child: Text(
-                              'Empty',
-                              style: TextStyle(color: Colors.black),
-                            ))
-                          : Dismissible(
-                              key: UniqueKey(),
-                              onDismissed: (direction) {
-                                history.delete();
-                              },
-                              child: TransactionListWidget(
-                                  index: index, history: history));
+                      return Dismissible(
+                          key: UniqueKey(),
+                          onDismissed: (direction) {
+                            history.delete();
+                          },
+                          background: Container(
+                              color: Colors.red,
+                              child: const Icon(Icons.delete,
+                                  color: Colors.white, size: 36)),
+                          child: TransactionListWidget(
+                              index: index, history: history));
                     },
                   ),
                 )
