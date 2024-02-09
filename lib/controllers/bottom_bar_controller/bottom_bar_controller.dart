@@ -5,4 +5,6 @@ final bottomBarIndexProvider = StateProvider<int>((ref) {
   return 0;
 });
 
-
+final expenseStateProvider = StateProvider<bool>((ref) {
+  return false;
+});

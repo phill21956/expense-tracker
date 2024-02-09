@@ -1,7 +1,6 @@
 import 'package:expense_tracker/controllers/home_controller/home_controller.dart';
 import 'package:expense_tracker/data/utils.dart';
 import 'package:expense_tracker/model/add_data.dart';
-import 'package:expense_tracker/model/budget_json.dart';
 import 'package:flutter/material.dart';
 
 class BudgetBodyWidget extends StatelessWidget {

@@ -1,6 +1,6 @@
+import 'package:expense_tracker/controllers/add_budget_controller/add_budget_controller.dart';
 import 'package:expense_tracker/controllers/add_controller.dart/main_container_controller.dart';
 import 'package:expense_tracker/main.dart';
-import 'package:expense_tracker/model/add_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,17 +10,13 @@ class BudgetSaveButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedItemCat = ref.watch(selectedCatProvider);
-    final selectedItemType = ref.watch(selectedTypeProvider);
-    final amountController = ref.watch(amountControllerProvider);
-    final descrController = ref.watch(descrControllerProvider);
-    final date = ref.watch(dateProvider);
+    final amountController = ref.watch(budgetAmountControllerProvider);
+    final nameController = ref.watch(budgetNameControllerProvider);
+    final expenseCat = ref.watch(expenseCatProvider);
+    final items = ref.watch(selectedValProvider);
     return GestureDetector(
       onTap: () {
-        if (selectedItemCat == null ||
-            selectedItemType == null ||
-            amountController.text.isEmpty ||
-            descrController.text.isEmpty) {
+        if (amountController.text.isEmpty || nameController.text.isEmpty) {
           Fluttertoast.showToast(
               msg: "Please fill all fields",
               toastLength: Toast.LENGTH_LONG,
@@ -29,9 +25,33 @@ class BudgetSaveButtonWidget extends ConsumerWidget {
               textColor: Colors.white,
               fontSize: 16.0);
         } else {
-          var add = Add_data(selectedItemType, amountController.text, date,
-              descrController.text, selectedItemCat);
-          addDataBox.add(add);
+          final String name = nameController.text;
+          final double amount = double.parse(amountController.text);
+          // Get the current expenses map from the expenseCatProvider state
+          final Map<String, double> updatedExpenses = expenseCat;
+
+          // Update the expenses map with the new amount
+          updatedExpenses.update(name, (existingValue) => amount,
+              ifAbsent: () => amount);
+
+              
+          expenseDataBox.put('expensed', updatedExpenses);
+
+
+          final Map<String, double> storedExpenses =
+              expenseDataBox.get('expensed') ?? updatedExpenses;
+        
+          // Find the updated expense entry
+          final MapEntry<String, double> updatedSelectedExpense =
+              storedExpenses.entries.firstWhere((entry) => entry.key == name);
+
+          ref.read(selectedValProvider.notifier).state = updatedSelectedExpense;
+          ref.read(expenseCatProvider.notifier).state = storedExpenses;
+
+          print('Updated123: ${expenseCat.keys} -- ${expenseCat.values}');
+          print('Updated: ${items.key} -- ${items.value}');
+          print('Updated1: ${storedExpenses}');
+
           Navigator.of(context).pop();
         }
       },

@@ -1,5 +1,5 @@
-import 'package:expense_tracker/Screens/add_budget/add_budget.dart';
 import 'package:expense_tracker/controllers/add_controller.dart/main_container_controller.dart';
+import 'package:expense_tracker/controllers/bottom_bar_controller/bottom_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,8 +8,11 @@ class NameBoxWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedItem = ref.watch(selectedCatProvider);
-    final items = ref.watch(expenseCatProvider);
+    final state = ref.watch(expenseStateProvider);
+    final selectedItem = ref.watch(selectedValProvider);
+    final items =
+        state ? ref.watch(expenseCatProvider2) : ref.watch(expenseCatProvider);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -23,15 +26,14 @@ class NameBoxWidget extends ConsumerWidget {
           ),
         ),
         child: DropdownButton<String>(
-          value: selectedItem,
+          value: selectedItem.key,
           onChanged: ((value) {
-            ref.read(selectedCatProvider.notifier).state = value!;
-            if (value == "Add new category") {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const AddBudgetScreen()));
-            }
+            final entry =
+                items.entries.firstWhere((entry) => entry.key == value);
+            ref.read(selectedValProvider.notifier).state = entry;
+            print('skdk:${selectedItem.key} - ${selectedItem.value}');
           }),
-          items: items
+          items: items.keys
               .map((e) => DropdownMenuItem(
                     value: e,
                     child: Container(
@@ -50,15 +52,15 @@ class NameBoxWidget extends ConsumerWidget {
                     ),
                   ))
               .toList(),
-          selectedItemBuilder: (BuildContext context) => items
+          selectedItemBuilder: (BuildContext context) => items.entries
               .map((e) => Row(
                     children: [
                       SizedBox(
                         width: 42,
-                        child: Image.asset('images/$e.png'),
+                        child: Image.asset('images/${e.key}.png'),
                       ),
                       const SizedBox(width: 5),
-                      Text(e)
+                      Text(e.key)
                     ],
                   ))
               .toList(),

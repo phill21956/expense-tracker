@@ -1,5 +1,4 @@
 import 'package:expense_tracker/Screens/add_budget/add_budget.dart';
-import 'package:expense_tracker/Screens/add_screen/add_screen.dart';
 import 'package:expense_tracker/controllers/budget_controller/budget_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

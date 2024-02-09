@@ -21,7 +21,7 @@ List<Add_data> budgetDay() {
   var history2 = addDataBox.values.toList();
   DateTime date = DateTime.now();
 
-  history2.forEach((item) {
+  for (var item in history2) {
     if (item.datetime.day == date.day) {
       if (aggregatedPrices.containsKey(item.name)) {
         aggregatedPrices[item.name] =
@@ -30,7 +30,7 @@ List<Add_data> budgetDay() {
         aggregatedPrices[item.name] = double.parse(item.amount);
       }
     }
-  });
+  }
 
   aggregatedList = aggregatedPrices.entries.map((entry) {
     String itemName = entry.key;

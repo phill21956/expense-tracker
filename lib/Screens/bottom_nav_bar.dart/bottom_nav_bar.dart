@@ -7,6 +7,7 @@ import 'package:expense_tracker/controllers/bottom_bar_controller/bottom_bar_con
 import 'package:expense_tracker/data/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
@@ -20,12 +21,39 @@ class BottomNavBar extends ConsumerWidget {
       BudgetScreen(),
       Container()
     ];
+
     return Scaffold(
       body: screen[indexColor],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const AddScreen())),
+      floatingActionButton: SpeedDial(
+        //  animatedIcon: AnimatedIcons.add_event,
+        shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: primaryColor,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        curve: Curves.easeInOut,
+        tooltip: 'Add income or expense',
+        spaceBetweenChildren: 20,
+        children: [
+          SpeedDialChild(
+              child: const Icon(Icons.add_card, color: Colors.white),
+              backgroundColor: Colors.transparent,
+              label: 'Add Income',
+              onTap: () {
+                ref.read(expenseStateProvider.notifier).state = true;
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const AddScreen()));
+              }),
+          SpeedDialChild(
+              child: const Icon(Icons.payments, color: Colors.white),
+              backgroundColor: Colors.transparent,
+              label: 'Add Expense',
+              onTap: () {
+                ref.read(expenseStateProvider.notifier).state = false;
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const AddScreen()));
+              }),
+        ],
+
         child: const Icon(Icons.add, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
